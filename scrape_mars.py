@@ -1,10 +1,10 @@
+# Dependencies
+from splinter import Browser
+from bs4 import BeautifulSoup
+from webdriver_manager.chrome import ChromeDriverManager
+import pandas as pd
+
 def scrape():
-
-    # Dependencies
-    from splinter import Browser
-    from bs4 import BeautifulSoup
-    from webdriver_manager.chrome import ChromeDriverManager
-
 
     ############# Mars News #############
     executable_path = {'executable_path': ChromeDriverManager().install()}
@@ -46,9 +46,7 @@ def scrape():
 
 
     ############# Mars Facts #############
-    # Dependencies
-    import pandas as pd
-
+ 
     # URL of page to be scraped
     url = 'https://galaxyfacts-mars.com/'
 
@@ -106,3 +104,5 @@ def scrape():
         {"title":title_list[2], "img_url":photo_url_list[2]},
         {"title":title_list[3], "img_url":photo_url_list[3]}
     ]
+
+    return hemisphere_image_urls
