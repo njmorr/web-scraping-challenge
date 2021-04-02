@@ -17,21 +17,11 @@ def scrape():
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
-    titles = soup.find_all('div', class_='content_title')
-
-    title_list = []
-
-    for title in titles:
-        headline = title.text.strip()
-    #     print(headline)
-        title_list.append(headline)
-
-    # browser.quit()
+    titles = soup.find("div", class_="content_title")
+    top_headline = titles.text.strip()
 
 
     ############# JPL Mars Space Images #############
-    # executable_path = {'executable_path': ChromeDriverManager().install()}
-    # browser = Browser('chrome', **executable_path, headless=False)
 
     # URL of page to be scraped
     url = 'https://spaceimages-mars.com/'
@@ -42,8 +32,6 @@ def scrape():
     featured_image = soup.find('div', class_='floating_text_area')
     featured_image_url = url + featured_image.find("a")["href"]
 
-    # browser.quit()
-
 
     ############# Mars Facts #############
  
@@ -52,11 +40,10 @@ def scrape():
 
     tables_data = pd.read_html(url)
     table_df = tables_data[0]
+    mars_facts_table = table_df.to_html(classes="list-group")
 
 
     ############# Mars Hemispheres #############
-    # executable_path = {'executable_path': ChromeDriverManager().install()}
-    # browser = Browser('chrome', **executable_path, headless=False)
 
     # URL of page to be scraped
     url = 'https://marshemispheres.com/'
@@ -79,14 +66,11 @@ def scrape():
         h3 = hemi.find("h3")
         title = h3.text.split(" Hemisphere")[0]
         title_list.append(title)
-    # browser.quit()
 
     photo_url_list = []
 
     # Creating a list of the images located on their respective pages.
     for link in url_list:
-        # executable_path = {'executable_path': ChromeDriverManager().install()}
-        # browser = Browser('chrome', **executable_path, headless=False)
         browser.visit(link)
         html = browser.html
         soup = BeautifulSoup(html, 'html.parser')
@@ -105,4 +89,4 @@ def scrape():
         {"title":title_list[3], "img_url":photo_url_list[3]}
     ]
 
-    return {"hemispheres":hemisphere_image_urls}
+    return {"headline":top_headline, "featured":featured_image_url, "factoids":mars_facts_table, "hemispheres":hemisphere_image_urls}
