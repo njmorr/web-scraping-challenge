@@ -89,4 +89,5 @@ def scrape():
         {"title":title_list[3], "img_url":photo_url_list[3]}
     ]
 
-    return {"headline":top_headline, "featured":featured_image_url, "factoids":mars_facts_table, "hemispheres":hemisphere_image_urls}
+    return {"headline":top_headline, "featured":featured_image_url, 
+    "factoids":mars_facts_table, "hemispheres":hemisphere_image_urls}
