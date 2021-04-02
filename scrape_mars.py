@@ -39,8 +39,14 @@ def scrape():
     url = 'https://galaxyfacts-mars.com/'
 
     tables_data = pd.read_html(url)
+    
     table_df = tables_data[0]
-    mars_facts_table = table_df.to_html(classes="list-group")
+    new_header = table_df.iloc[0]
+    table = table_df[1:]
+    table.columns = new_header
+    table = table.set_index("Mars - Earth Comparison")
+
+    mars_facts_table = table.to_html(classes="list-group")
 
 
     ############# Mars Hemispheres #############
