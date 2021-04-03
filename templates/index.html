@@ -25,30 +25,36 @@
       </div>
     </div>
 
-       <!-- Row: Featured images and facts  -->
-       <div class="row" id="craiglist-listings">
-        <div class="col-md-6">
-          <h4 class="heading">Featured Mars Image</h4>
-          <img class="img-fluid" src="{{listings.featured}}"/>
-        </div>
-
-        <div class="col-md-6">
-            <h4 class="heading">Mars Facts</h4>
-            <p>{{listings.factoids|safe}}</p>
-          </div>
-      </div>
-    
-      <!-- Row: Mars Hemispheres  -->
+    <!-- Row: Featured images and facts  -->
     <div class="row" id="craiglist-listings">
-      
+      <div class="col-md-6">
+        <h4 class="heading">Featured Mars Image</h4>
+        <img class="img-fluid" src="{{listings.featured}}"/>
+      </div>
+
+      <div class="col-md-6">
+        <h4 class="heading">Mars Facts</h4>
+        <p>{{listings.factoids|safe}}</p>
+      </div>
+    </div>
+    
+    <!-- Row: Mars Hemispheres  -->
+    <div class="row" id="craiglist-listings">
+      <div class="page-header">
+        <h2 class="text-center">Mars Hemispheres</h2>
+      </div>
+
       {% for hemi in listings.hemispheres %}
 
       <div class="col-md-3">
-          <h4 class="heading">{{hemi.title}}</h4>
-          <img class ="img-fluid" src="{{hemi.img_url}}"/>
+        <div class="thumbnail">
+          <img class ="ing-fluid" src="{{hemi.img_url}}"/>
+          <div class="caption">{{hemi.title}}
+          </div>
         </div>
-      {% endfor %}
       </div>
+      {% endfor %}
+    </div>
 
   </div>
 </body>
