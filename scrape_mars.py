@@ -17,8 +17,9 @@ def scrape():
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
-    titles = soup.find("div", class_="content_title")
-    top_headline = titles.text.strip()
+    titles = soup.find("div", class_="list_text")
+    top_headline = titles("div")[1].text
+    top_headline_teaser = titles("div")[2].text
 
 
     ############# JPL Mars Space Images #############
@@ -95,5 +96,5 @@ def scrape():
         {"title":title_list[3], "img_url":photo_url_list[3]}
     ]
 
-    return {"headline":top_headline, "featured":featured_image_url, 
+    return {"headline":top_headline, "teaser":top_headline_teaser, "featured":featured_image_url, 
     "factoids":mars_facts_table, "hemispheres":hemisphere_image_urls}
